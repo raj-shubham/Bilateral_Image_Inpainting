@@ -1,5 +1,6 @@
 import cv2 as cv
-import os  
+import os 
+import numpy as np 
 
 COLOR_SCHEME = {
 	"COLOR" : cv.IMREAD_COLOR, 
