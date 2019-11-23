@@ -29,7 +29,7 @@ def draw_freehand(event,x,y,flags,param):
     elif event == cv.EVENT_LBUTTONUP:
         is_drawing = False
     if is_drawing:
-        image_global_points.add((x,y))
+        image_global_points.add((y,x))
 
 def get_subimages(image_matrix, points_list, image_width):
     image_list = list()
@@ -37,7 +37,7 @@ def get_subimages(image_matrix, points_list, image_width):
         image_width +=1
     r = image_width//2
     for point in points_list:
-        image_list.append((image_matrix[point[0]-r : point[0]+r+1,point[1]-r : point[1]+r+1],point))
+        image_list.append([image_matrix[point[0]-r : point[0]+r+1,point[1]-r : point[1]+r+1],point])
     return image_list
 
 def put_subimages(image_matrix, subimage_list, image_width):
@@ -47,9 +47,16 @@ def put_subimages(image_matrix, subimage_list, image_width):
         point = subimages[1]
         subimage = subimages[0]
         image_matrix[point[0]-r : point[0]+r+1,point[1]-r : point[1]+r+1] = subimage
-    print(np.sum(image_matrix - org_image))
+    #print(np.sum(image_matrix - org_image))
     return image_matrix
 
+def process_subimage(subimage_list,kernel_width,sigma_range,sigma_domain,filter_itr):
+    for element in range(len(subimage_list)):
+        subimage = subimage_list[element][0]
+        for i in range(filter_itr):
+            subimage = common_cv.apply_bilateral_filter(subimage,kernel_width,sigma_range,sigma_domain)
+        subimage_list[element][0] = subimage
+    return subimage_list   
 
 image_path = "images/lena.png"
 img_mat = common_cv.read_image(image_path,"COLOR")
@@ -65,7 +72,15 @@ while(1):
         break
 cv.destroyAllWindows()
 
-image_width = 5
+image_width = 30
+kernel_width = 5
+sigma_range = 25
+sigma_domain = 0.5
+filter_itr = 2
 subimage_list = get_subimages(img_for_subimages, image_global_points, image_width)
-
-x = put_subimages(img_for_subimages, subimage_list, image_width)
+processed_subimage_list = process_subimage(subimage_list,kernel_width,sigma_range,sigma_domain,filter_itr)
+processed_image = put_subimages(img_for_subimages, processed_subimage_list, image_width)
+print('Image Processed')
+cv.imshow('Image',processed_image)
+cv.waitKey(0)
+cv.destroyAllWindows()
