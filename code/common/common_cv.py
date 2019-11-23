@@ -60,21 +60,36 @@ def apply_bilateral_filter(img, diameter, sigma_intensity, sigma_domain):
     for x in range(r,row-r):
         for y in range(r,col-r):
             
-            # Identifying k*k size neighbourhood for all channels
-            tmp_r = img[x - r:x + r + 1,y - r:y + r + 1,0]
-            tmp_g = img[x - r:x + r + 1,y - r:y + r + 1,1]
-            tmp_b = img[x - r:x + r + 1,y - r:y + r + 1,2]
+           if img.ndim == 3:
+                # Identifying k*k size neighbourhood for all channels
+                tmp_r = img[x - r:x + r + 1,y - r:y + r + 1,0]
+                tmp_g = img[x - r:x + r + 1,y - r:y + r + 1,1]
+                tmp_b = img[x - r:x + r + 1,y - r:y + r + 1,2]
             
-            # calculating direction*gradient of image and applying Gaussian 
-            grad = gradient(img[x - r:x + r + 1,y - r:y + r + 1],diameter,x,y)
-            kernel_r = gaussian(grad,sigma_intensity)
+                # calculating direction*gradient of image and applying Gaussian 
+                grad = gradient(img[x - r:x + r + 1,y - r:y + r + 1],diameter,x,y)
+                kernel_r = gaussian(grad,sigma_intensity)
             
-            # Calculating weight = w1(x,y)*w2(x,y)
-            wgt = (kernel_r[:,:,0])+(kernel_r[:,:,1])+(kernel_r[:,:,2]) * kernel_s
+                # Calculating weight = w1(x,y)*w2(x,y)
+                wgt = (kernel_r[:,:,0])+(kernel_r[:,:,1])+(kernel_r[:,:,2]) * kernel_s
             
-            # Changing the center pixel of neighbourhood for all channels
-            filtered_img[x, y, 0] = np.sum(wgt * tmp_r) / np.sum(wgt)
-            filtered_img[x, y, 1] = np.sum(wgt * tmp_g) / np.sum(wgt)
-            filtered_img[x, y, 2] = np.sum(wgt * tmp_b) / np.sum(wgt)
+                # Changing the center pixel of neighbourhood for all channels
+                filtered_img[x, y, 0] = np.sum(wgt * tmp_r) / np.sum(wgt)
+                filtered_img[x, y, 1] = np.sum(wgt * tmp_g) / np.sum(wgt)
+                filtered_img[x, y, 2] = np.sum(wgt * tmp_b) / np.sum(wgt)
+                
+            elif img.ndim == 2:
+                 # Identifying k*k size neighbourhood for all channels
+                tmp_r = img[x - r:x + r + 1,y - r:y + r + 1]
+                
+                # calculating direction*gradient of image and applying Gaussian 
+                grad = gradient(img[x - r:x + r + 1,y - r:y + r + 1],diameter,x,y)
+                kernel_r = gaussian(grad,sigma_intensity)
+            
+                # Calculating weight = w1(x,y)*w2(x,y)
+                wgt = (kernel_r * kernel_s)
+            
+                # Changing the center pixel of neighbourhood for all channels
+                filtered_img[x, y] = np.sum(wgt * tmp_r) / np.sum(wgt)
             
     return filtered_img
