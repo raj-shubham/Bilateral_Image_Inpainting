@@ -63,6 +63,18 @@ optional arguments:
 ```python
 $ python3 mousecallback.py 20 5 10.0 0.5 2
 ```
+### Select the damaged regions by dragging your mouse pointer over those areas while pressing the left mouse key
+![](code/GUI/images/select_damaged_regions.png)
+
+```shell
+Press 'y' when you are done with the selection of damaged regions
+
+Wait until the inpainting is in progress...
+
+An opencv window with inpainted image appears after some time
+
+Press any key to see the changes made on the damaged regions along with the original damaged image
+```
 
 ## Result:
 ![](code/GUI/images/inpainted_output.png)
