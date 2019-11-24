@@ -31,3 +31,6 @@ $ pip3 install -r requirements.txt
 ```shell
 $ python -m compileall .
 ```
+
+## Result:
+![](code/GUI/images/inpainted_output.png)
