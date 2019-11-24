@@ -4,6 +4,7 @@
 ## Steps to follow:
 - ### Clone the project repository
   - git clone https://github.com/raj-shubham/Bilateral_Image_Inpainting.git
+  - Requirements: python, pip (preferred version: python3, pip3) compatible with your system
 - ### Change path in the following files:
   - Bilateral_Image_Inpainting/code/config/settings.config
     ```shell
@@ -31,7 +32,14 @@ $ pip3 install -r requirements.txt
 
 ## Compile using the following command (execute inside /Bilateral_Image_Inpainting):
 ```python
-$ python -m compileall .
+$ python3 -m compileall .
+```
+
+## Path to relevant files:
+```shell
+Bilateral_Image_Inpainting/code/GUI/mousecallback.py
+Bilateral_Image_Inpainting/code/GUI/comparative_analysis.py
+Bilateral_Image_Inpainting/code/config/settings.config
 ```
 
 ## Help 
