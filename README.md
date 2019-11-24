@@ -94,7 +94,7 @@ Wait until the inpainting is in progress...
 
 An opencv window with inpainted image appears after some time
 
-Press any key to see the changes made on the damaged regions along with the original damaged image
+Press 'y' to see the changes made on the damaged regions along with the original damaged image
 ```
 
 ## Result:
