@@ -28,8 +28,38 @@ $ pip3 install -r requirements.txt
 ```
 
 ## Compile using the following command (execute inside /Bilateral_Image_Inpainting):
-```shell
+```python
 $ python -m compileall .
+```
+
+## Help 
+```python
+$ python3 mousecallback.py -h
+or 
+$ python3 mousecallback.py --help
+```
+
+```shell
+usage: mousecallback.py [-h]
+                        image_width kernel_width sigma_range sigma_domain
+                        filter_itr
+
+Performs inpainting eg. python3 mousecallback.py 20 5 10.0 0.5 2
+
+positional arguments:
+  image_width   neighbourhood range of image (type: int ; eg. 20)
+  kernel_width  kernel size (odd number) (type: int ; eg. 5)
+  sigma_range   variation across intensity (type: float ; eg. 10.0)
+  sigma_domain  variation across distance (type: float ; eg. 0.5)
+  filter_itr    iterations over damaged regions (type: int ; eg. 2)
+
+optional arguments:
+  -h, --help    show this help message and exit
+```
+
+## Execute
+```python
+$ python3 mousecallback.py 20 5 10.0 0.5 2
 ```
 
 ## Result:
