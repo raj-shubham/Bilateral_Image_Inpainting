@@ -59,6 +59,27 @@ optional arguments:
   -h, --help    show this help message and exit
 ```
 
+```python
+$ python3 comparative_analysis.py -h
+or 
+$ python3 comparative_analysis.py --help
+```
+
+```shell
+usage: comparative_analysis.py [-h] iterations sigma_range sigma_domain
+
+Compares different inpainting solutions eg. python3 comparative_analysis.py 5 25.0 0.5
+
+positional arguments:
+  iterations    input number of iterations of inpainting algorithms (type: int
+                ; eg. 5)
+  sigma_range   variation across intensity (type: float ; eg. 25.0)
+  sigma_domain  variation across distance (type: float ; eg. 0.5)
+
+optional arguments:
+  -h, --help    show this help message and exit
+```
+
 ## Execute
 ```python
 $ python3 mousecallback.py 20 5 10.0 0.5 2
