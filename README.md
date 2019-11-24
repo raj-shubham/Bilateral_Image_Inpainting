@@ -1,7 +1,7 @@
 ## Steps to follow:
-### 1. Change path in the following files:
-### a.> config/settings.config
-### b.> GUI/mousecallback.py
+- ### 1. Change path in the following files:
+  - config/settings.config
+  - GUI/mousecallback.py
 
 ## Install the required python modules used in the project (execute inside /Bilateral_Image_Inpainting):
 ```shell
