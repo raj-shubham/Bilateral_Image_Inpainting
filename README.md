@@ -4,7 +4,11 @@
 ### b.> GUI/mousecallback.py
 
 ## Install the required python modules used in the project (execute inside /Bilateral_Image_Inpainting):
-### pip3 install -r requirements.txt
+```shell
+$ pip3 install -r requirements.txt
+```
 
 ## Compile using the following command (execute inside /Bilateral_Image_Inpainting):
-### python -m compileall .
+```shell
+$ python -m compileall .
+```
